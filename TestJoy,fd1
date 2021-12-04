@@ -6,6 +6,6 @@ SYS "Joystick_Read",0 TO state%
 x% = ((state%<<24)>>>24)
 y% = ((state%<<16)>>>16)
 buttons% = (state%>>16) AND 255
-PRINT"X = ";x%
-PRINT"Y = ";y%
-PRINT"Buttons = ";buttons%
+PRINT"  X = ";x%
+PRINT"  Y = ";y%
+PRINT"  Buttons = ";buttons%
