@@ -26,8 +26,8 @@ build-modules-robuild:
 
     # Rename the file we got
     - |
-      if [[ -f VersionNum ]] ; then
-          version=$(sed '/MajorVersion / ! d ; s/.*MajorVersion *"\(.*\)"/\1/' VersionNum)
+      if [[ -f Source,13c ]] ; then
+          version=$(sed -Ee '/^Ver / ! d ; s/^Ver *(.*)[a-z]/\1/' Source,13c)
       else
           version=$(git rev-parse --short HEAD)
       fi

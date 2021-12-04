@@ -29,10 +29,14 @@ jobs:
       - Echo Test that it can be read
       - /TestJoy
 
+      - Echo Build release archive
+      - cdir Release
+      - Copy JoystickParallel Release.JoystickParallel ~CVR
+
     # Outputs from the build are defined in artifacts
     # These are a list of artifacts to report directories or files.
     # Only a single item is currently supported.
     artifacts:
       # Each element of the artifacts should have a path key, which gives the file or
       # directory to return.
-      - path: JoystickParallel
+      - path: Release
