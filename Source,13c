@@ -1,7 +1,11 @@
 IN   -
-OUT  RealJoy
+OUT  JoystickParallel
 Type Module
-Ver  1.00h
+Ver  1.01a
+
+Pre
+  Parallel_Op = &42ec1
+End Pre
 
 Define Module
  Name    JoystickJF
@@ -22,6 +26,10 @@ End Module
    LDMFD   (sp)!,{r1-r5,pc}              ; Return from call
 
 .readstick0
+; <= r0 = flags:
+;           b0-7    - signed x position
+;           b8-15   - signed y position
+;           b16-23  - button bits
    MOV     r0,#0
    BL      $getdata
    XBL     $checkpressed,,,,8,&40
@@ -39,11 +47,11 @@ $checkpressed
 
 $getdata
    STMFD   (sp)!,{r0-r1,r5,link}            ; Stack registers
-   XSWI    "Parallel_Op",2,36,NOT 36           ; set as input
-   XSWI    "Parallel_Op",0,0,0                 ; read data
+   XSWI    Parallel_Op,2,36,NOT 36           ; set as input
+   XSWI    Parallel_Op,0,0,0                 ; read data
    MOV     r5,r1         ; r5=data
-   XSWI    "Parallel_Op",2,4,NOT 36            ; set as output
-   XSWI    "Parallel_Op",1,0,-1
+   XSWI    Parallel_Op,2,4,NOT 36            ; set as output
+   XSWI    Parallel_Op,1,0,-1
    MOV     r2,r5
    LDMFD   (sp)!,{r0-r1,r5,pc}              ; Return from call
 
