@@ -11,7 +11,7 @@ this is all that is necessary.
 
 The driver builds automatically on pushes using the RISC OS Build service.
 
-To manually build the module, push to code to the server using the `riscos-build-online` tool. For example:
+To manually build the module, push the code to the server using the `riscos-build-online` tool. For example:
 
 ```
 curl -s -L -o riscos-build-online https://github.com/gerph/robuild-client/releases/download/v0.05/riscos-build-online && chmod +x riscos-build-online
@@ -20,6 +20,8 @@ zip -q9r /tmp/source-archive.zip * .robuild.yaml
 
 ./riscos-build-online -i /tmp/source-archive.zip -a off -t 60 -o archive
 ```
+
+This will produce a binary called `archive,a91` which is a RISC OS zip archive containing the module.
 
 ## Constructing the "Interface"
 
